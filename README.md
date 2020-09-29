@@ -40,11 +40,11 @@ Also, provinces on map are now larger and easier to map to and from. Counties ar
 
 - For non-steam installations or where autodetection fails, program will expect for all the input files to be present in running directory:
 
-* provinces.png
-* rivers.png
-* definition.csv
-* 00_landed_titles.txt
-* english/ directory copied from CK3's game/localization/ directory.
+  * provinces.png
+  * rivers.png
+  * definition.csv
+  * 00_landed_titles.txt
+  * english/ directory copied from CK3's game/localization/ directory.
 
 - Localization directory is optional and if not found, counties will be named by their canonical c_county names.
 - For linux be sure to export LD_PATH to your imagemagick libraries (either installed by build_linux.sh script or preinstalled, so the program can find them.
