@@ -7,9 +7,6 @@
     <Filter Include="MapperTests">
       <UniqueIdentifier>{0be6794b-7d73-46ca-8d6f-af8d92d700b2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TestFiles">
-      <UniqueIdentifier>{38319c43-fc9a-4751-bcb1-b5e8bd3e5468}</UniqueIdentifier>
-    </Filter>
     <Filter Include="RequiredDLLs">
       <UniqueIdentifier>{5d046dbb-c199-4d27-8251-5b17550a2396}</UniqueIdentifier>
     </Filter>
