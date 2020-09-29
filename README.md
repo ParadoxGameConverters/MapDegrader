@@ -19,10 +19,12 @@ It converts the CK3 map into "something usable".
 - If localization is found for the county, it is loaded from english sources, and converted from UTF8 to WIN1252.
 - In definition.csv the exports like these are done:
 
-```ProvID;r;g;b;title;x;
+```
+ProvID;r;g;b;title;x;
 3;126;9;129;Vestrland;x;
 5;0;15;130;Austrland;x;
-...```
+...
+```
 
 - Finally, the resized, recolored and exported files are saved into `export` directory. 
 
