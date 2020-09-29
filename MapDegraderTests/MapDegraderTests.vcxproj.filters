@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="MapDegrader">
+      <UniqueIdentifier>{63542c5b-0224-4922-b74a-a0d87d5b3c54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapperTests">
+      <UniqueIdentifier>{0be6794b-7d73-46ca-8d6f-af8d92d700b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestFiles">
+      <UniqueIdentifier>{38319c43-fc9a-4751-bcb1-b5e8bd3e5468}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RequiredDLLs">
+      <UniqueIdentifier>{5d046dbb-c199-4d27-8251-5b17550a2396}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapDegrader\LocalizationScraper">
+      <UniqueIdentifier>{361622f2-b201-416a-a0e0-bd5c49d87c9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapDegrader\ColorMapper">
+      <UniqueIdentifier>{924ae098-bcda-404a-b241-e6ad510a5b63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapDegrader\DefinitionsScraper">
+      <UniqueIdentifier>{d1890d8b-1934-4abe-b5fa-92aa915a11e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapDegrader\LandedTitlesScraper">
+      <UniqueIdentifier>{c8fca6ed-7292-49ec-b981-b1ad4862f572}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="commonItems">
+      <UniqueIdentifier>{be3123c2-ed53-4821-a764-e5d4dcd7bae7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\googletest\googletest\src\gtest_main.cc" />
+    <ClCompile Include="..\googletest\googletest\src\gtest-all.cc" />
+    <ClCompile Include="..\MapDegrader\Source\MapDegrader.cpp">
+      <Filter>MapDegrader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MapDegrader\Source\Mappers\LocalizationScraper\LocalizationScraper.cpp">
+      <Filter>MapDegrader\LocalizationScraper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MapDegrader\Source\Mappers\ColorMapper\ColorMapper.cpp">
+      <Filter>MapDegrader\ColorMapper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MapDegrader\Source\Mappers\DefinitionsScraper\Definitions.cpp">
+      <Filter>MapDegrader\DefinitionsScraper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MapDegrader\Source\Mappers\LandedTitlesScraper\LandedTitles.cpp">
+      <Filter>MapDegrader\LandedTitlesScraper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\Color.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\CommonFunctions.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\iconvlite.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\Log.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\OSCommonLayer.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\Parser.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\ParserHelpers.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\StringUtils.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\WinUtils.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="MapperTests\LandedTitlesTests.cpp">
+      <Filter>MapperTests</Filter>
+    </ClCompile>
+    <ClCompile Include="MapperTests\DefinitionsTests.cpp">
+      <Filter>MapperTests</Filter>
+    </ClCompile>
+    <ClCompile Include="MapperTests\LocalizationTests.cpp">
+      <Filter>MapperTests</Filter>
+    </ClCompile>
+    <ClCompile Include="MapperTests\ColorMapTests.cpp">
+      <Filter>MapperTests</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_bzlib_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_freetype_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_glib_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_lcms_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_libxml_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_lqr_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_Magick++_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_MagickCore_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_MagickWand_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_zlib_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\IM_MOD_RL_dds_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\IM_MOD_RL_tga_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\IM_MOD_RL_xc_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_png_.dll" />
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\IM_MOD_RL_bmp_.dll" />
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\IM_MOD_RL_png_.dll" />
+  </ItemGroup>
+</Project>

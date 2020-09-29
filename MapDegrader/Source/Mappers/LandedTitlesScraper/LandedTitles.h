@@ -18,7 +18,7 @@ public:
 	void registerKeys();
 
 	std::string djLiege;
-	int provinceID;
+	int provinceID = 0;
 	std::string name;
 	std::map<std::string, LandedTitles> titles;
 

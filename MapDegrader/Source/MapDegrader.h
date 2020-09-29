@@ -3,6 +3,7 @@
 #include "Mappers/LandedTitlesScraper/LandedTitles.h"
 #include "Mappers/DefinitionsScraper/Definitions.h"
 #include "Mappers/ColorMapper/ColorMapper.h"
+#include "Mappers/LocalizationScraper/LocalizationScraper.h"
 
 class MapDegrader
 {
@@ -17,6 +18,7 @@ private:
 	LandedTitles landedTitles;
 	Definitions definitions;
 	ColorMapper colorMapper;
+	LocalizationScraper localizationScraper;
 	
 };
 

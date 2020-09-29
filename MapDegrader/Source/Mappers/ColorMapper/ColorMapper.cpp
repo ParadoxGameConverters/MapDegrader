@@ -2,6 +2,9 @@
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include <fstream>
+#include "../LandedTitlesScraper/LandedTitles.h"
+#include "../DefinitionsScraper/Definitions.h"
+#include "../LocalizationScraper/LocalizationScraper.h"
 
 void ColorMapper::craftReplacementColorMatrix(const LandedTitles& landedTitles, const Definitions& definitions)
 {
@@ -37,13 +40,36 @@ void ColorMapper::craftReplacementColorMatrix(const LandedTitles& landedTitles, 
 	Log(LogLevel::Info) << "Matrix size: " << replacementMatrix.size();
 }
 
-void ColorMapper::exportDefinitions() const
+void ColorMapper::exportDefinitions(const LocalizationScraper& localization) const
 {
 	std::ofstream defFile("export/definition.csv");
 	defFile << "ProvID;r;g;b;title;x;\n";
 	for (const auto& county : countyColors)
 	{
-		defFile << county.first << ";" << county.second.second.r() << ";" << county.second.second.g() << ";" << county.second.second.b() << ";" << county.second.first << ";x;\n";
+		auto name = county.second.first;
+		const auto& loc = localization.getLocForKey(name);
+		if (loc)
+		{
+			name = commonItems::convertUTF8ToWin1252(*loc);
+		}
+		defFile << county.first << ";" << county.second.second.r() << ";" << county.second.second.g() << ";" << county.second.second.b() << ";" << name << ";x;\n";
 	}
 	defFile.close();
+}
+
+std::string ColorMapper::exportDefinitionsToString(const LocalizationScraper& localization) const
+{
+	std::stringstream defStream;
+	defStream << "ProvID;r;g;b;title;x;\n";
+	for (const auto& county : countyColors)
+	{
+		auto name = county.second.first;
+		const auto& loc = localization.getLocForKey(name);
+		if (loc)
+		{
+			name = commonItems::convertUTF8ToWin1252(*loc);
+		}
+		defStream << county.first << ";" << county.second.second.r() << ";" << county.second.second.g() << ";" << county.second.second.b() << ";" << name << ";x;\n";
+	}
+	return defStream.str();
 }

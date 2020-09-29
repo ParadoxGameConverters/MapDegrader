@@ -9,8 +9,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{34feff06-a41b-441c-995d-ccadc8a2b14c}</ProjectGuid>
-    <RootNamespace>MapDegrader</RootNamespace>
+    <ProjectGuid>{263da23b-d957-405e-a97a-e897a052193d}</ProjectGuid>
+    <RootNamespace>MapDegraderTests</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -18,7 +18,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -32,45 +32,38 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
-    <OutDir>$(ProjectDir)\..\$(Configuration)\MapDegrader\</OutDir>
-    <IntDir>$(SolutionDir)\ReleaseIntermediate\</IntDir>
-    <TargetName>MapDegrader</TargetName>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
-    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <ReferencePath>$(ReferencePath)</ReferencePath>
-    <LibraryWPath>$(LibraryWPath)</LibraryWPath>
-    <SourcePath>$(SourcePath)</SourcePath>
-    <ExcludePath>$(ExcludePath)</ExcludePath>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <IncludePath>../commonItems;../googletest/googletest;../googletest/googletest/include;../googletest/googlemock;../googletest/googlemock/include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>false</ConformanceMode>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>..\commonItems;..\imageMagick\include-windows</AdditionalIncludeDirectories>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <Optimization>Disabled</Optimization>
       <OmitFramePointers>false</OmitFramePointers>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>..\imageMagick\include-windows;..\commonItems;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\imageMagick\lib-windows;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(ProjectDir)$(Configuration)\$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>..\imageMagick\lib-windows;</AdditionalLibraryDirectories>
       <AdditionalDependencies>CORE_RL_aom_.lib;CORE_RL_bzlib_.lib;CORE_RL_cairo_.lib;CORE_RL_croco_.lib;CORE_RL_exr_.lib;CORE_RL_ffi_.lib;CORE_RL_flif_.lib;CORE_RL_freetype_.lib;CORE_RL_fribidi_.lib;CORE_RL_glib_.lib;CORE_RL_harfbuzz_.lib;CORE_RL_jbig_.lib;CORE_RL_jp2_.lib;CORE_RL_jpeg_.lib;CORE_RL_lcms_.lib;CORE_RL_libde265_.lib;CORE_RL_libheif_.lib;CORE_RL_liblzma_.lib;CORE_RL_libraw_.lib;CORE_RL_librsvg_.lib;CORE_RL_libxml_.lib;CORE_RL_libzip_.lib;CORE_RL_lqr_.lib;CORE_RL_Magick++_.lib;CORE_RL_MagickCore_.lib;CORE_RL_MagickWand_.lib;CORE_RL_openjpeg_.lib;CORE_RL_pango_.lib;CORE_RL_pixman_.lib;CORE_RL_png_.lib;CORE_RL_tiff_.lib;CORE_RL_webp_.lib;CORE_RL_zlib_.lib;FILTER_analyze_.lib;ImageMagickObject.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ShowProgress>NotSet</ShowProgress>
-      <LinkStatus>false</LinkStatus>
     </Link>
     <PostBuildEvent>
       <Command>
       </Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
       <Message>
       </Message>
     </PostBuildEvent>
@@ -85,27 +78,17 @@
     <ClCompile Include="..\commonItems\ParserHelpers.cpp" />
     <ClCompile Include="..\commonItems\StringUtils.cpp" />
     <ClCompile Include="..\commonItems\WinUtils.cpp" />
-    <ClCompile Include="Source\main.cpp" />
-    <ClCompile Include="Source\MapDegrader.cpp" />
-    <ClCompile Include="Source\Mappers\ColorMapper\ColorMapper.cpp" />
-    <ClCompile Include="Source\Mappers\DefinitionsScraper\Definitions.cpp" />
-    <ClCompile Include="Source\Mappers\LandedTitlesScraper\LandedTitles.cpp" />
-    <ClCompile Include="Source\Mappers\LocalizationScraper\LocalizationScraper.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\commonItems\Color.h" />
-    <ClInclude Include="..\commonItems\CommonFunctions.h" />
-    <ClInclude Include="..\commonItems\iconvlite.h" />
-    <ClInclude Include="..\commonItems\Log.h" />
-    <ClInclude Include="..\commonItems\OSCompatibilityLayer.h" />
-    <ClInclude Include="..\commonItems\Parser.h" />
-    <ClInclude Include="..\commonItems\ParserHelpers.h" />
-    <ClInclude Include="..\commonItems\StringUtils.h" />
-    <ClInclude Include="Source\MapDegrader.h" />
-    <ClInclude Include="Source\Mappers\ColorMapper\ColorMapper.h" />
-    <ClInclude Include="Source\Mappers\DefinitionsScraper\Definitions.h" />
-    <ClInclude Include="Source\Mappers\LandedTitlesScraper\LandedTitles.h" />
-    <ClInclude Include="Source\Mappers\LocalizationScraper\LocalizationScraper.h" />
+    <ClCompile Include="..\googletest\googletest\src\gtest-all.cc" />
+    <ClCompile Include="..\googletest\googletest\src\gtest_main.cc" />
+    <ClCompile Include="..\MapDegrader\Source\MapDegrader.cpp" />
+    <ClCompile Include="..\MapDegrader\Source\Mappers\ColorMapper\ColorMapper.cpp" />
+    <ClCompile Include="..\MapDegrader\Source\Mappers\DefinitionsScraper\Definitions.cpp" />
+    <ClCompile Include="..\MapDegrader\Source\Mappers\LandedTitlesScraper\LandedTitles.cpp" />
+    <ClCompile Include="..\MapDegrader\Source\Mappers\LocalizationScraper\LocalizationScraper.cpp" />
+    <ClCompile Include="MapperTests\ColorMapTests.cpp" />
+    <ClCompile Include="MapperTests\DefinitionsTests.cpp" />
+    <ClCompile Include="MapperTests\LandedTitlesTests.cpp" />
+    <ClCompile Include="MapperTests\LocalizationTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_bzlib_.dll">
@@ -152,12 +135,10 @@
     <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_png_.dll">
       <FileType>Document</FileType>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\IM_MOD_RL_png_.dll">
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\IM_MOD_RL_bmp_.dll">
       <FileType>Document</FileType>
     </CopyFileToFolders>
-  </ItemGroup>
-  <ItemGroup>
-    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\IM_MOD_RL_bmp_.dll">
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\IM_MOD_RL_png_.dll">
       <FileType>Document</FileType>
     </CopyFileToFolders>
   </ItemGroup>

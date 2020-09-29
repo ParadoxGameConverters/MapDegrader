@@ -39,6 +39,9 @@
     <ClCompile Include="..\commonItems\WinUtils.cpp">
       <Filter>commonItems</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Mappers\LocalizationScraper\LocalizationScraper.cpp">
+      <Filter>Mappers\LocalizationScraper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="commonItems">
@@ -58,6 +61,9 @@
     </Filter>
     <Filter Include="Mappers\ColorMapper">
       <UniqueIdentifier>{865eb87b-9af7-4d8b-8261-1a0bf8f12929}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mappers\LocalizationScraper">
+      <UniqueIdentifier>{6b796f78-541b-47fa-9430-01ed70afca40}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="..\commonItems\StringUtils.h">
       <Filter>commonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\LocalizationScraper\LocalizationScraper.h">
+      <Filter>Mappers\LocalizationScraper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

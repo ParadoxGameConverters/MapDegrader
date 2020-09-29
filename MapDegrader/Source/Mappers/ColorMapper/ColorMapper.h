@@ -1,16 +1,18 @@
 #ifndef COLOR_MAPPER_H
 #define COLOR_MAPPER_H
 #include "Color.h"
-#include "../LandedTitlesScraper/LandedTitles.h"
-#include "../DefinitionsScraper/Definitions.h"
 
+class LandedTitles;
+class Definitions;
+class LocalizationScraper;
 class ColorMapper
 {
 public:
 	void craftReplacementColorMatrix(const LandedTitles& landedTitles, const Definitions& definitions);
+	void exportDefinitions(const LocalizationScraper& localization) const;
+	[[nodiscard]] std::string exportDefinitionsToString(const LocalizationScraper& localization) const;
 
 	[[nodiscard]] const auto& getReplacementMatrix() const { return replacementMatrix; }
-	void exportDefinitions() const;
 
 private:
 	std::map<std::string, std::map<int, commonItems::Color>> countyBaronies; // we ping off the LAST barony in map (largest key).

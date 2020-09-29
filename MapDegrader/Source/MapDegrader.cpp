@@ -7,9 +7,10 @@ void MapDegrader::degradeMap(const std::string& gamePath)
 {
 	scrapeLandedTitles(gamePath);
 	scrapeDefinitions(gamePath);
+	localizationScraper.loadLocalizations(gamePath);
 	colorMapper.craftReplacementColorMatrix(landedTitles, definitions);
 	alterMap(gamePath);
-	colorMapper.exportDefinitions();
+	colorMapper.exportDefinitions(localizationScraper);
 }
 
 void MapDegrader::scrapeLandedTitles(const std::string& gamePath)
