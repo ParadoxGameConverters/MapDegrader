@@ -24,7 +24,7 @@ TEST(MapDegrader_ColorMapperTests, matrixCanBeBuilt)
 	ColorMapper colorMapper;
 	colorMapper.craftReplacementColorMatrix(titles, definitions);
 
-	const auto& matrix = colorMapper.getReplacementMatrix(); // matrix tells us which colors to replace ith which others.
+	const auto& matrix = colorMapper.getReplacementMatrix(); // matrix tells us which colors to replace with which others.
 
 	ASSERT_EQ(2, matrix.size());
 	
