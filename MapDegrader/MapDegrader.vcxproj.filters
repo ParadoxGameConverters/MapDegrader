@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\MapDegrader.cpp" />
+    <ClCompile Include="Source\Mappers\LandedTitlesScraper\LandedTitles.cpp">
+      <Filter>Mappers\LandedTitlesScraper</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\DefinitionsScraper\Definitions.cpp">
+      <Filter>Mappers\DefinitionsScraper</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\ColorMapper\ColorMapper.cpp">
+      <Filter>Mappers\ColorMapper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\Color.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\CommonFunctions.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\iconvlite.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\Log.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\OSCommonLayer.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\Parser.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\ParserHelpers.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\StringUtils.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\WinUtils.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\LocalizationScraper\LocalizationScraper.cpp">
+      <Filter>Mappers\LocalizationScraper</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="commonItems">
+      <UniqueIdentifier>{201aa329-08a3-43ce-859e-9be20aa030c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RequiredDLLs">
+      <UniqueIdentifier>{3e363c2a-1a93-4d70-9262-8167e03b53f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mappers">
+      <UniqueIdentifier>{9fb5843b-bb63-4046-90a7-e9f2179a2251}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mappers\LandedTitlesScraper">
+      <UniqueIdentifier>{b1a6fd20-7f2c-4e77-a97f-d55bf2067321}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mappers\DefinitionsScraper">
+      <UniqueIdentifier>{3729cbd9-b1c7-4608-baad-09342c7a6b02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mappers\ColorMapper">
+      <UniqueIdentifier>{865eb87b-9af7-4d8b-8261-1a0bf8f12929}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mappers\LocalizationScraper">
+      <UniqueIdentifier>{6b796f78-541b-47fa-9430-01ed70afca40}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\MapDegrader.h" />
+    <ClInclude Include="Source\Mappers\LandedTitlesScraper\LandedTitles.h">
+      <Filter>Mappers\LandedTitlesScraper</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\DefinitionsScraper\Definitions.h">
+      <Filter>Mappers\DefinitionsScraper</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\ColorMapper\ColorMapper.h">
+      <Filter>Mappers\ColorMapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\commonItems\Color.h">
+      <Filter>commonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\commonItems\CommonFunctions.h">
+      <Filter>commonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\commonItems\iconvlite.h">
+      <Filter>commonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\commonItems\Log.h">
+      <Filter>commonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\commonItems\OSCompatibilityLayer.h">
+      <Filter>commonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\commonItems\Parser.h">
+      <Filter>commonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\commonItems\ParserHelpers.h">
+      <Filter>commonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\commonItems\StringUtils.h">
+      <Filter>commonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\LocalizationScraper\LocalizationScraper.h">
+      <Filter>Mappers\LocalizationScraper</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_bzlib_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_freetype_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_glib_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_lcms_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_libxml_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_lqr_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_Magick++_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_MagickCore_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_MagickWand_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_zlib_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\IM_MOD_RL_dds_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\IM_MOD_RL_tga_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\IM_MOD_RL_xc_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\CORE_RL_png_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\IM_MOD_RL_png_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\imageMagick\dll-windows-required\IM_MOD_RL_bmp_.dll">
+      <Filter>RequiredDLLs</Filter>
+    </CopyFileToFolders>
+  </ItemGroup>
+</Project>
