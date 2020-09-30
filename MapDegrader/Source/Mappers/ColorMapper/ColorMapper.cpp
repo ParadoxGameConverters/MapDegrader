@@ -31,13 +31,13 @@ void ColorMapper::craftReplacementColorMatrix(const LandedTitles& landedTitles, 
 	// And fill out the matrix.
 	for (const auto& county : countyBaronies)
 	{
-		// Which has the largest barony ID?
-		auto largestProvinceID = county.second.rbegin()->first; // last one. They are ints and map is ordered.
+		// Which has the smallest barony ID?
+		auto smallestProvinceID = county.second.begin()->first; // first one. They are ints and map is ordered.
 		for (const auto& barony : county.second)
-			if (barony.first != largestProvinceID)
-				replacementMatrix.emplace_back(std::pair(barony.second, county.second.find(largestProvinceID)->second));
+			if (barony.first != smallestProvinceID)
+				replacementMatrix.emplace_back(std::pair(barony.second, county.second.find(smallestProvinceID)->second));
 
-		countyColors.insert(std::pair(largestProvinceID, std::pair(county.first, county.second.find(largestProvinceID)->second)));
+		countyColors.insert(std::pair(smallestProvinceID, std::pair(county.first, county.second.find(smallestProvinceID)->second)));
 	}
 	Log(LogLevel::Info) << "Matrix size: " << replacementMatrix.size();
 }
