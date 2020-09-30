@@ -14,15 +14,15 @@ It converts the CK3 map into "something usable".
 ## What is being done exactly?
 
 - The humongously oversized provinces.png and rivers.png are rescaled (without color loss) from 8k to a more usable 4k resolution.
-- For every county (a collection of baronies), a barony with the highest provinceID is chosen to be the county's representative in terms of color and provinceID.
+- For every county (a collection of baronies), a barony with the lowest provinceID is chosen to be the county's representative in terms of color and provinceID.
 - All other baronies on the map (provinces.png) are recolored to that particular color.
 - If localization is found for the county, it is loaded from english sources, and converted from UTF8 to WIN1252.
 - In definition.csv the exports like these are done:
 
 ```
 ProvID;r;g;b;title;x;
-3;126;9;129;Vestrland;x;
-5;0;15;130;Austrland;x;
+1;42;3;128;Vestrland;x;
+4;168;12;2;Austrland;x;
 ...
 ```
 
