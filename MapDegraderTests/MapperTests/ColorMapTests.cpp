@@ -27,14 +27,14 @@ TEST(MapDegrader_ColorMapperTests, matrixCanBeBuilt)
 	const auto& matrix = colorMapper.getReplacementMatrix(); // matrix tells us which colors to replace with which others.
 
 	ASSERT_EQ(2, matrix.size());
-	
-	const auto& pair1 = matrix[0];
-	const auto& pair2 = matrix[1];
 
-	ASSERT_EQ(commonItems::Color(std::array<int, 3>{1, 2, 3}), pair1.first);
-	ASSERT_EQ(commonItems::Color(std::array<int, 3>{7, 8, 9}), pair1.second);
-	ASSERT_EQ(commonItems::Color(std::array<int, 3>{4, 5, 6}), pair2.first);
-	ASSERT_EQ(commonItems::Color(std::array<int, 3>{7, 8, 9}), pair2.second);
+	const auto& [oldColor1, newColor1] = matrix[0];
+	const auto& [oldColor2, newColor2] = matrix[1];
+
+	ASSERT_EQ(commonItems::Color(std::array<int, 3>{1, 2, 3}), oldColor1);
+	ASSERT_EQ(commonItems::Color(std::array<int, 3>{7, 8, 9}), newColor1);
+	ASSERT_EQ(commonItems::Color(std::array<int, 3>{4, 5, 6}), oldColor2);
+	ASSERT_EQ(commonItems::Color(std::array<int, 3>{7, 8, 9}), newColor2);
 }
 
 TEST(MapDegrader_ColorMapperTests, matrixWillThrowExceptionOnMissingDefinitions)
@@ -104,7 +104,9 @@ TEST(MapDegrader_ColorMapperTests, newDefinitionsCanBeExported)
 	localizations.loadLocalizations(locStream);
 
 	// This is expected result. County3 mapped to highest barony # (17), using that barony's colors.
-	const auto* output = "ProvID;r;g;b;title;x;\n17;7;8;9;The County;x;\n";
+	const auto* output =
+		"ProvID;r;g;b;title;x;\n"
+		"17;7;8;9;The County;x;\n";
 
 	ASSERT_EQ(output, colorMapper.exportDefinitionsToString(localizations));
 }
@@ -133,7 +135,9 @@ TEST(MapDegrader_ColorMapperTests, newDefinitionsCanBeExportedWithoutLocalizatio
 	localizations.loadLocalizations(locStream);
 
 	// Locs will default to title name
-	const auto *output = "ProvID;r;g;b;title;x;\n17;7;8;9;c_county3;x;\n";
+	const auto* output = 
+		"ProvID;r;g;b;title;x;\n"
+		"17;7;8;9;c_county3;x;\n";
 
 	ASSERT_EQ(output, colorMapper.exportDefinitionsToString(localizations));
 }

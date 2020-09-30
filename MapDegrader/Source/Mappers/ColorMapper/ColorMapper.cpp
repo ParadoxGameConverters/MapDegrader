@@ -12,6 +12,8 @@ void ColorMapper::craftReplacementColorMatrix(const LandedTitles& landedTitles, 
 	auto counter = 0;
 
 	// Create a county/barony map: map<c_county, map<<1, {0 4 5}>, <2, {5 6 7}> ...>>
+	std::map<std::string, std::map<int, commonItems::Color>> countyBaronies; // we ping off the LAST barony in map (largest key).
+
 	for (const auto& title : landedTitles.getTitles())
 	{
 		if (title.first.find("b_") == 0)

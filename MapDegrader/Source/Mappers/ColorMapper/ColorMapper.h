@@ -15,7 +15,6 @@ public:
 	[[nodiscard]] const auto& getReplacementMatrix() const { return replacementMatrix; }
 
 private:
-	std::map<std::string, std::map<int, commonItems::Color>> countyBaronies; // we ping off the LAST barony in map (largest key).
 	std::vector<std::pair<commonItems::Color, commonItems::Color>> replacementMatrix;
 	std::map<int, std::pair<std::string, commonItems::Color>> countyColors; // provinceID/pair<c_county, color>
 };

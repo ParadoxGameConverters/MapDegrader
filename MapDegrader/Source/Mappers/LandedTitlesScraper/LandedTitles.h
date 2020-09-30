@@ -9,16 +9,16 @@ public:
 	void loadTitles(const std::string& fileName);
 	void loadTitles(std::istream& theStream);
 
-	[[nodiscard]] const auto& getTitles() const { return titles; }
+	[[nodiscard]] auto getProvinceID() const { return provinceID; }
 	[[nodiscard]] const auto& getDJLiege() const { return djLiege; }
 	[[nodiscard]] const auto& getName()const { return name; }
-	[[nodiscard]] auto getProvinceID() const { return provinceID; }
+	[[nodiscard]] const auto& getTitles() const { return titles; }
 
   private:
 	void registerKeys();
 
-	std::string djLiege;
 	int provinceID = 0;
+	std::string djLiege;
 	std::string name;
 	std::map<std::string, LandedTitles> titles;
 
