@@ -15,13 +15,14 @@ void LocalizationScraper::loadLocalizations(const std::string& gamePath)
 
 	if (!commonItems::DoesFolderExist(locPath))
 	{
-		Log(LogLevel::Error) << "Localization Mapper cannot find proper folder. You need either \"english\" in running dir or " << gamePath << "localization/english.";
+		Log(LogLevel::Error) << "Localization Mapper cannot find proper folder. You need either \"english\" in running dir or " << gamePath
+									<< "localization/english.";
 		Log(LogLevel::Error) << "Localizations for titles are disabled.";
 		return;
 	}
 
 	auto fileNames = commonItems::GetAllFilesInFolderRecursive(locPath);
-	for (const auto& file : fileNames)
+	for (const auto& file: fileNames)
 	{
 		std::ifstream fileStream(locPath + "/" + file);
 		if (fileStream.is_open())

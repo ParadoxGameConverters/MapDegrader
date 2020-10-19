@@ -54,26 +54,30 @@ void MapDegrader::alterMap(const std::string& gamePath)
 		map.sample("50%");
 		Log(LogLevel::Info) << "Scaling down image to a more manageable " << map.size().width() << "x" << map.size().height() << ".";
 	}
-	
+
 	// And now, color by color (doing pixel by pixel would require hours)
 	Log(LogLevel::Info) << "Swapping colors. This section takes about 10 minutes on a reasonable machine and cannot be rushed.";
 	auto counter = 0;
 	for (const auto& colorPair: colorMapper.getReplacementMatrix())
 	{
-		auto swap = Magick::Color(static_cast<Magick::Quantum>(colorPair.first.r()), static_cast<Magick::Quantum>(colorPair.first.g()), static_cast<Magick::Quantum>(colorPair.first.b()));
-		auto with = Magick::Color(static_cast<Magick::Quantum>(colorPair.second.r()), static_cast<Magick::Quantum>(colorPair.second.g()), static_cast<Magick::Quantum>(colorPair.second.b()));
+		auto swap = Magick::Color(static_cast<Magick::Quantum>(colorPair.first.r()),
+			 static_cast<Magick::Quantum>(colorPair.first.g()),
+			 static_cast<Magick::Quantum>(colorPair.first.b()));
+		auto with = Magick::Color(static_cast<Magick::Quantum>(colorPair.second.r()),
+			 static_cast<Magick::Quantum>(colorPair.second.g()),
+			 static_cast<Magick::Quantum>(colorPair.second.b()));
 		map.opaque(swap, with);
 		if (counter % 100 == 0)
-			Log(LogLevel::Progress) << std::lround(static_cast<double>(counter) * 100 / static_cast<double>(colorMapper.getReplacementMatrix().size())) << "% complete.";
+			Log(LogLevel::Progress) << std::lround(static_cast<double>(counter) * 100 / static_cast<double>(colorMapper.getReplacementMatrix().size()))
+											<< "% complete.";
 		counter++;
 	}
 
-	map.magick("BMP");
-	map.write("export/provinces.bmp");
+	map.write("export/provinces.png");
 	Log(LogLevel::Info) << "Provinces exported.";
 
 	// Part 2.
-	
+
 	Log(LogLevel::Info) << "Loading rivers.";
 	if (gamePath.empty())
 		map.read("rivers.png");
@@ -86,7 +90,6 @@ void MapDegrader::alterMap(const std::string& gamePath)
 		map.sample("50%");
 		Log(LogLevel::Info) << "Scaling down rivers to a more manageable " << map.size().width() << "x" << map.size().height() << ".";
 	}
-	map.magick("BMP");
-	map.write("export/rivers.bmp");
+	map.write("export/rivers.png");
 	Log(LogLevel::Info) << "Rivers Exported.";
 }

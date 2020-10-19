@@ -1,6 +1,6 @@
 #include "Log.h"
-#include "OSCompatibilityLayer.h"
 #include "MapDegrader.h"
+#include "OSCompatibilityLayer.h"
 
 int main(const int argc, const char* argv[])
 {

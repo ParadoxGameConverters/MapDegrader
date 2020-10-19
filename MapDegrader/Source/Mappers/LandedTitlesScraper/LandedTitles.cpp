@@ -32,12 +32,11 @@ void LandedTitles::registerKeys()
 		newTitle.loadTitles(theStream, name, titleName);
 
 		// Store ourselves
-		titles.insert(std::pair(titleName, newTitle));	
+		titles.insert(std::pair(titleName, newTitle));
 
 		// Pull the titles beneath this one and add them to the lot.
 		const auto& locatedTitles = newTitle.getTitles();
 		titles.insert(locatedTitles.begin(), locatedTitles.end());
-
 	});
 	registerKeyword("province", [this](const std::string& unused, std::istream& theStream) {
 		provinceID = commonItems::singleInt(theStream).getInt();
