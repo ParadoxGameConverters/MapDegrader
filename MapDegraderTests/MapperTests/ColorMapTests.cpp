@@ -8,7 +8,7 @@
 TEST(MapDegrader_ColorMapperTests, matrixCanBeBuilt)
 {
 	std::stringstream titleStream;
-	// We'll be replacing barony4's and barony6's color on map with barony5's as barony5 has highest provinceID.
+	// We'll be replacing barony5's and barony6's color on map with barony4's as barony4 has lowest provinceID.
 	titleStream << "c_county3 = { b_barony4 = { province = 12 } b_barony5 = { province = 17 } b_barony6 = { province = 13 } }\n";
 	LandedTitles titles;
 	titles.loadTitles(titleStream);
@@ -31,16 +31,16 @@ TEST(MapDegrader_ColorMapperTests, matrixCanBeBuilt)
 	const auto& [oldColor1, newColor1] = matrix[0];
 	const auto& [oldColor2, newColor2] = matrix[1];
 
-	ASSERT_EQ(commonItems::Color(std::array<int, 3>{1, 2, 3}), oldColor1);
-	ASSERT_EQ(commonItems::Color(std::array<int, 3>{7, 8, 9}), newColor1);
-	ASSERT_EQ(commonItems::Color(std::array<int, 3>{4, 5, 6}), oldColor2);
-	ASSERT_EQ(commonItems::Color(std::array<int, 3>{7, 8, 9}), newColor2);
+	ASSERT_EQ(commonItems::Color(std::array<int, 3>{4, 5, 6}), oldColor1);
+	ASSERT_EQ(commonItems::Color(std::array<int, 3>{1, 2, 3}), newColor1);
+	ASSERT_EQ(commonItems::Color(std::array<int, 3>{7, 8, 9}), oldColor2);
+	ASSERT_EQ(commonItems::Color(std::array<int, 3>{1, 2, 3}), newColor2);
 }
 
 TEST(MapDegrader_ColorMapperTests, matrixWillThrowExceptionOnMissingDefinitions)
 {
 	std::stringstream titleStream;
-	// We'll be replacing barony4's and barony6's color on map with barony5's as barony5 has highest provinceID.
+	// We'll be replacing barony5's and barony6's color on map with barony4's as barony4 has lowest provinceID.
 	titleStream << "c_county3 = { b_barony4 = { province = 12 } b_barony5 = { province = 17 } b_barony6 = { province = 13 } }\n";
 	LandedTitles titles;
 	titles.loadTitles(titleStream);
@@ -60,7 +60,7 @@ TEST(MapDegrader_ColorMapperTests, matrixWillThrowExceptionOnMissingDefinitions)
 TEST(MapDegrader_ColorMapperTests, matrixWillNotThrowExceptionOnExtraDefinitions)
 {
 	std::stringstream titleStream;
-	// We'll be replacing barony4's and barony6's color on map with barony5's as barony5 has highest provinceID.
+	// We'll be replacing barony5's and barony6's color on map with barony4's as barony4 has lowest provinceID.
 	titleStream << "c_county3 = { b_barony4 = { province = 12 } b_barony5 = { province = 17 } b_barony6 = { province = 13 } }\n";
 	LandedTitles titles;
 	titles.loadTitles(titleStream);
@@ -81,7 +81,7 @@ TEST(MapDegrader_ColorMapperTests, matrixWillNotThrowExceptionOnExtraDefinitions
 TEST(MapDegrader_ColorMapperTests, newDefinitionsCanBeExported)
 {
 	std::stringstream titleStream;
-	// We'll be replacing barony4's and barony6's color on map with barony5's as barony5 has highest provinceID.
+	// We'll be replacing barony5's and barony6's color on map with barony4's as barony4 has lowest provinceID.
 	titleStream << "c_county3 = { b_barony4 = { province = 12 } b_barony5 = { province = 17 } b_barony6 = { province = 13 } }\n";
 	LandedTitles titles;
 	titles.loadTitles(titleStream);
@@ -103,10 +103,10 @@ TEST(MapDegrader_ColorMapperTests, newDefinitionsCanBeExported)
 	LocalizationScraper localizations;
 	localizations.loadLocalizations(locStream);
 
-	// This is expected result. County3 mapped to highest barony # (17), using that barony's colors.
+	// This is expected result. County3 mapped to lowest barony # (12), using that barony's colors.
 	const auto* output =
 		 "ProvID;r;g;b;title;x;\n"
-		 "17;7;8;9;The County;x;\n";
+		 "12;1;2;3;The County;x;\n";
 
 	ASSERT_EQ(output, colorMapper.exportDefinitionsToString(localizations));
 }
@@ -114,7 +114,7 @@ TEST(MapDegrader_ColorMapperTests, newDefinitionsCanBeExported)
 TEST(MapDegrader_ColorMapperTests, newDefinitionsCanBeExportedWithoutLocalizationsLoaded)
 {
 	std::stringstream titleStream;
-	// We'll be replacing barony4's and barony6's color on map with barony5's as barony5 has highest provinceID.
+	// We'll be replacing barony5's and barony6's color on map with barony4's as barony4 has lowest provinceID.
 	titleStream << "c_county3 = { b_barony4 = { province = 12 } b_barony5 = { province = 17 } b_barony6 = { province = 13 } }\n";
 	LandedTitles titles;
 	titles.loadTitles(titleStream);
@@ -137,7 +137,7 @@ TEST(MapDegrader_ColorMapperTests, newDefinitionsCanBeExportedWithoutLocalizatio
 	// Locs will default to title name
 	const auto* output =
 		 "ProvID;r;g;b;title;x;\n"
-		 "17;7;8;9;c_county3;x;\n";
+		 "12;1;2;3;c_county3;x;\n";
 
 	ASSERT_EQ(output, colorMapper.exportDefinitionsToString(localizations));
 }
