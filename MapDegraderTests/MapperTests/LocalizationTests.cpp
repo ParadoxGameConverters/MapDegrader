@@ -61,4 +61,3 @@ TEST(MapDegrader_LocalizationsTests, brokenLocsAreNotHandledNotOurFaultLocalizat
 
 	ASSERT_EQ("value\" key2: \"value2", *localizations.getLocForKey("key"));
 }
-

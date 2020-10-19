@@ -14,7 +14,7 @@ class LocalizationScraper
 
   private:
 	void scrapeStream(std::istream& theStream);
-	
+
 	std::map<std::string, std::string> localizations; // key/loc.
 };
 

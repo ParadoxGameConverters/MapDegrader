@@ -1,10 +1,10 @@
 #include "ColorMapper.h"
+#include "../DefinitionsScraper/Definitions.h"
+#include "../LandedTitlesScraper/LandedTitles.h"
+#include "../LocalizationScraper/LocalizationScraper.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include <fstream>
-#include "../LandedTitlesScraper/LandedTitles.h"
-#include "../DefinitionsScraper/Definitions.h"
-#include "../LocalizationScraper/LocalizationScraper.h"
 
 void ColorMapper::craftReplacementColorMatrix(const LandedTitles& landedTitles, const Definitions& definitions)
 {
@@ -14,7 +14,7 @@ void ColorMapper::craftReplacementColorMatrix(const LandedTitles& landedTitles, 
 	// Create a county/barony map: map<c_county, map<<1, {0 4 5}>, <2, {5 6 7}> ...>>
 	std::map<std::string, std::map<int, commonItems::Color>> countyBaronies; // we ping off the LAST barony in map (largest key).
 
-	for (const auto& title : landedTitles.getTitles())
+	for (const auto& title: landedTitles.getTitles())
 	{
 		if (title.first.find("b_") == 0)
 		{
@@ -29,11 +29,11 @@ void ColorMapper::craftReplacementColorMatrix(const LandedTitles& landedTitles, 
 	Log(LogLevel::Info) << counter << " provinces linked into " << countyBaronies.size() << " counties";
 
 	// And fill out the matrix.
-	for (const auto& county : countyBaronies)
+	for (const auto& county: countyBaronies)
 	{
 		// Which has the smallest barony ID?
 		auto smallestProvinceID = county.second.begin()->first; // first one. They are ints and map is ordered.
-		for (const auto& barony : county.second)
+		for (const auto& barony: county.second)
 			if (barony.first != smallestProvinceID)
 				replacementMatrix.emplace_back(std::pair(barony.second, county.second.find(smallestProvinceID)->second));
 
@@ -46,7 +46,7 @@ void ColorMapper::exportDefinitions(const LocalizationScraper& localization) con
 {
 	std::ofstream defFile("export/definition.csv");
 	defFile << "ProvID;r;g;b;title;x;\n";
-	for (const auto& county : countyColors)
+	for (const auto& county: countyColors)
 	{
 		auto name = county.second.first;
 		const auto& loc = localization.getLocForKey(name);
@@ -54,7 +54,8 @@ void ColorMapper::exportDefinitions(const LocalizationScraper& localization) con
 		{
 			name = commonItems::convertUTF8ToWin1252(*loc);
 		}
-		defFile << county.first << ";" << county.second.second.r() << ";" << county.second.second.g() << ";" << county.second.second.b() << ";" << name << ";x;\n";
+		defFile << county.first << ";" << county.second.second.r() << ";" << county.second.second.g() << ";" << county.second.second.b() << ";" << name
+				  << ";x;\n";
 	}
 	defFile.close();
 }
@@ -63,7 +64,7 @@ std::string ColorMapper::exportDefinitionsToString(const LocalizationScraper& lo
 {
 	std::stringstream defStream;
 	defStream << "ProvID;r;g;b;title;x;\n";
-	for (const auto& county : countyColors)
+	for (const auto& county: countyColors)
 	{
 		auto name = county.second.first;
 		const auto& loc = localization.getLocForKey(name);
@@ -71,7 +72,8 @@ std::string ColorMapper::exportDefinitionsToString(const LocalizationScraper& lo
 		{
 			name = commonItems::convertUTF8ToWin1252(*loc);
 		}
-		defStream << county.first << ";" << county.second.second.r() << ";" << county.second.second.g() << ";" << county.second.second.b() << ";" << name << ";x;\n";
+		defStream << county.first << ";" << county.second.second.r() << ";" << county.second.second.g() << ";" << county.second.second.b() << ";" << name
+					 << ";x;\n";
 	}
 	return defStream.str();
 }

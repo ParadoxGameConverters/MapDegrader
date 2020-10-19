@@ -32,7 +32,7 @@ void Definitions::parseStream(std::istream& theStream)
 		auto r = 0;
 		auto g = 0;
 		auto b = 0;
-		
+
 		ProvinceDefinition definition;
 		try
 		{
@@ -60,7 +60,7 @@ void Definitions::parseStream(std::istream& theStream)
 		{
 			throw std::runtime_error("Line: |" + line + "| is unparseable! Breaking. (" + e.what() + ")");
 		}
-		
+
 		definition.color = commonItems::Color(std::array<int, 3>{r, g, b});
 		definitions.insert(std::pair(definition.provinceID, definition));
 	}
