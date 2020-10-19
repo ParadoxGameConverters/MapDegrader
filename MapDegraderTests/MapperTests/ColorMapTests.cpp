@@ -1,6 +1,6 @@
 #include "../../MapDegrader/MapDegrader/Source/Mappers/ColorMapper/ColorMapper.h"
-#include "../../MapDegrader/MapDegrader/Source/Mappers/LandedTitlesScraper/LandedTitles.h"
 #include "../../MapDegrader/MapDegrader/Source/Mappers/DefinitionsScraper/Definitions.h"
+#include "../../MapDegrader/MapDegrader/Source/Mappers/LandedTitlesScraper/LandedTitles.h"
 #include "../../MapDegrader/MapDegrader/Source/Mappers/LocalizationScraper/LocalizationScraper.h"
 #include "gtest/gtest.h"
 #include <sstream>
@@ -48,7 +48,7 @@ TEST(MapDegrader_ColorMapperTests, matrixWillThrowExceptionOnMissingDefinitions)
 	std::stringstream definitionStream;
 	definitionStream << "comment\n";
 	definitionStream << "12;1;2;3;c_title1;x;\n";
-	definitionStream << "#13;4;5;6;c_title2;x;\n";  // <- missing definition.
+	definitionStream << "#13;4;5;6;c_title2;x;\n"; // <- missing definition.
 	definitionStream << "17;7;8;9;IRRELEVANT;x;\n";
 	Definitions definitions;
 	definitions.loadDefinitions(definitionStream);
@@ -70,7 +70,7 @@ TEST(MapDegrader_ColorMapperTests, matrixWillNotThrowExceptionOnExtraDefinitions
 	definitionStream << "12;1;2;3;c_title1;x;\n";
 	definitionStream << "13;4;5;6;c_title2;x;\n";
 	definitionStream << "17;7;8;9;IRRELEVANT;x;\n";
-	definitionStream << "19;4;5;6;c_title2;x;\n";  // <- extra definition, leftovers and such.
+	definitionStream << "19;4;5;6;c_title2;x;\n"; // <- extra definition, leftovers and such.
 	Definitions definitions;
 	definitions.loadDefinitions(definitionStream);
 
@@ -105,8 +105,8 @@ TEST(MapDegrader_ColorMapperTests, newDefinitionsCanBeExported)
 
 	// This is expected result. County3 mapped to highest barony # (17), using that barony's colors.
 	const auto* output =
-		"ProvID;r;g;b;title;x;\n"
-		"17;7;8;9;The County;x;\n";
+		 "ProvID;r;g;b;title;x;\n"
+		 "17;7;8;9;The County;x;\n";
 
 	ASSERT_EQ(output, colorMapper.exportDefinitionsToString(localizations));
 }
@@ -135,9 +135,9 @@ TEST(MapDegrader_ColorMapperTests, newDefinitionsCanBeExportedWithoutLocalizatio
 	localizations.loadLocalizations(locStream);
 
 	// Locs will default to title name
-	const auto* output = 
-		"ProvID;r;g;b;title;x;\n"
-		"17;7;8;9;c_county3;x;\n";
+	const auto* output =
+		 "ProvID;r;g;b;title;x;\n"
+		 "17;7;8;9;c_county3;x;\n";
 
 	ASSERT_EQ(output, colorMapper.exportDefinitionsToString(localizations));
 }

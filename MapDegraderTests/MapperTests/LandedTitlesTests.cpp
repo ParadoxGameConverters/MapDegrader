@@ -68,4 +68,3 @@ TEST(MapDegrader_LandedTitlesTests, titlesCanBeLoadedRecursively)
 	ASSERT_EQ(12, barony4->second.getProvinceID());
 	ASSERT_EQ(13, barony6->second.getProvinceID());
 }
-
