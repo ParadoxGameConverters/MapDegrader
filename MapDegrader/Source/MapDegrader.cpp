@@ -1,12 +1,10 @@
 #include "MapDegrader.h"
-
-#include <iomanip>
-
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
+#include <iomanip>
 
 void MapDegrader::degradeMap(const std::string& gamePath)
-{	
+{
 	scrapeLandedTitles(gamePath);
 	scrapeDefinitions(gamePath);
 	localizationScraper.loadLocalizations(gamePath);
@@ -46,7 +44,6 @@ void MapDegrader::loadMap(const std::string& gamePath)
 	if (!map.isValid())
 		throw std::runtime_error("Could not open provinces.png!");
 }
-
 
 void MapDegrader::alterMap(const std::string& gamePath)
 {

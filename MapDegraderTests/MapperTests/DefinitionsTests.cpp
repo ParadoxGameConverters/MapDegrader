@@ -57,7 +57,7 @@ TEST(MapDegrader_DefinitionsTests, commentsAndEmptyLinesAreIgnored)
 	ASSERT_EQ(3, definitions.getDefinitions().size());
 }
 
-TEST(MapDegrader_DefinitionsTests, matchOnIDReturnsColor)
+TEST(MapDegrader_DefinitionsTests, chromaMatchOnIDReturnsChroma)
 {
 	std::stringstream input;
 	Definitions definitions;
@@ -70,7 +70,7 @@ TEST(MapDegrader_DefinitionsTests, matchOnIDReturnsColor)
 	ASSERT_EQ(chroma, definitions.getChromaForProvinceID(1));
 }
 
-TEST(MapDegrader_DefinitionsTests, mismatchOnIDReturnsNothing)
+TEST(MapDegrader_DefinitionsTests, chromaMismatchOnIDReturnsNothing)
 {
 	std::stringstream input;
 	Definitions definitions;
@@ -92,7 +92,7 @@ TEST(MapDegrader_DefinitionsTests, pixelsCanBeLoaded)
 	Magick::Image testImage(Magick::Geometry(2, 2), "white");
 	testImage.modifyImage();
 	Magick::Pixels view(testImage);
-	auto *pixels = view.get(0, 1, 2, 1); // we'll color lower half to red - starting at 0x1, 2 columns, 1 row
+	auto* pixels = view.get(0, 1, 2, 1); // we'll color lower half to red - starting at 0x1, 2 columns, 1 row
 	for (auto column = 0; column < 2; ++column)
 	{
 		*pixels++ = 255;

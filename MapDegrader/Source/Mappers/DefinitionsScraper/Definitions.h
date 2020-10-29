@@ -1,8 +1,8 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 #include "Color.h"
-#include <map>
 #include "Magick++.h"
+#include <map>
 
 struct Pixel
 {
@@ -12,7 +12,7 @@ struct Pixel
 		y = iy;
 	}
 	int x = 0;
-	int y = 0;	
+	int y = 0;
 };
 
 struct ProvinceDefinition
@@ -42,6 +42,6 @@ class Definitions
 
 unsigned int pixelPack(unsigned char r, unsigned char g, unsigned char b);
 std::tuple<unsigned char, unsigned char, unsigned char> pixelUnpack(unsigned int chroma);
-	 int coordsToOffset(int x, int y, int width);
+int coordsToOffset(int x, int y, int width);
 
 #endif // DEFINITIONS_H

@@ -39,21 +39,19 @@ void ColorMapper::craftReplacementPixelList(const LandedTitles& landedTitles, co
 			{
 				// add all the pixels into this so we can efficiently update them later
 				const auto& pixels = definitions.getPixelsForProvinceID(baronyID);
-				if (const auto& replacementItr = replacementPixels.find(smallestProvinceChroma); replacementItr!= replacementPixels.end())
+				if (const auto& replacementItr = replacementPixels.find(smallestProvinceChroma); replacementItr != replacementPixels.end())
 				{
 					replacementItr->second.insert(replacementItr->second.begin(), pixels.begin(), pixels.end());
-					Log(LogLevel::Debug) << "adding " << pixels.size() << "pixels";
 				}
 				else
 				{
 					replacementPixels[smallestProvinceChroma] = pixels;
-					Log(LogLevel::Debug) << "inserting " << pixels.size() << "pixels";
 				}
 			}
 
 		countyColors.insert(std::pair(smallestProvinceID, std::pair(countyName, smallestProvinceChroma)));
 	}
-	Log(LogLevel::Info) << "ReplacementPixels size: " << replacementPixels.size();
+	Log(LogLevel::Info) << "Recognized chromas: " << replacementPixels.size();
 }
 
 void ColorMapper::exportDefinitions(const LocalizationScraper& localization) const
@@ -69,8 +67,7 @@ void ColorMapper::exportDefinitions(const LocalizationScraper& localization) con
 			name = commonItems::convertUTF8ToWin1252(*loc);
 		}
 		const auto [r, g, b] = pixelUnpack(county.second.second);
-		defFile << county.first << ";" << std::to_string(r) << ";" << std::to_string(g) << ";" << std::to_string(b) << ";" << name
-		                                                  << ";x;\n";
+		defFile << county.first << ";" << std::to_string(r) << ";" << std::to_string(g) << ";" << std::to_string(b) << ";" << name << ";x;\n";
 	}
 	defFile.close();
 }
@@ -88,8 +85,7 @@ std::string ColorMapper::exportDefinitionsToString(const LocalizationScraper& lo
 			name = commonItems::convertUTF8ToWin1252(*loc);
 		}
 		const auto [r, g, b] = pixelUnpack(county.second.second);
-		defStream << county.first << ";" << std::to_string(r) << ";" << std::to_string(g) << ";" << std::to_string(b) << ";" << name
-					 << ";x;\n";
+		defStream << county.first << ";" << std::to_string(r) << ";" << std::to_string(g) << ";" << std::to_string(b) << ";" << name << ";x;\n";
 	}
 	return defStream.str();
 }

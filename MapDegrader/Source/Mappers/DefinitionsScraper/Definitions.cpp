@@ -1,8 +1,8 @@
 #include "Definitions.h"
 #include "Log.h"
+#include "Magick++.h"
 #include "OSCompatibilityLayer.h"
 #include <fstream>
-#include "Magick++.h"
 #include <iomanip>
 
 void Definitions::loadDefinitions(std::istream& theStream)
@@ -101,15 +101,15 @@ void Definitions::loadPixelData(Magick::Image& map)
 	for (auto y = 0; y < height; ++y)
 		for (auto x = 0; x < width; ++x)
 		{
-			const auto offset = coordsToOffset(x, y, width);			
+			const auto offset = coordsToOffset(x, y, width);
 			const auto r = pixels[offset];
 			const auto g = pixels[offset + 1];
 			const auto b = pixels[offset + 2];
 			const auto chroma = pixelPack(r, g, b);
-			
+
 			if (const auto& chromaItr = chromaCache.find(chroma); chromaItr != chromaCache.end())
 				definitions[chromaItr->second].pixels.emplace_back(Pixel(x, y));
-			
+
 			if (counter % 1000000 == 0)
 			{
 				progress = counter * 100.0 / pixelCount;
@@ -139,4 +139,3 @@ int coordsToOffset(const int x, const int y, const int width)
 {
 	return (y * width + x) * 3;
 }
-

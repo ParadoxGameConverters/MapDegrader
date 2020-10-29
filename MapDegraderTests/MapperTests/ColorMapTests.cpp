@@ -45,7 +45,7 @@ TEST(MapDegrader_ColorMapperTests, matrixCanBeBuilt)
 
 	// there should be 2 pixels inside a single map key, (2, 1) and (1, 1), responding to provIDs 17 and 13, respectively
 	ASSERT_EQ(1, replacementPixels.size());
-	
+
 	const auto chroma = pixelPack(1, 2, 3);
 	const auto calculatedPixels = replacementPixels.find(chroma)->second;
 
