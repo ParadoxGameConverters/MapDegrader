@@ -13,7 +13,6 @@ It converts the CK3 map into "something usable".
 
 ## What is being done exactly?
 
-- The humongously oversized provinces.png and rivers.png are rescaled (without color loss) from 8k to a more usable 4k resolution.
 - For every county (a collection of baronies), a barony with the lowest provinceID is chosen to be the county's representative in terms of color and provinceID.
 - All other baronies on the map (provinces.png) are recolored to that particular color.
 - If localization is found for the county, it is loaded from english sources, and converted from UTF8 to WIN1252.
@@ -26,7 +25,7 @@ ProvID;r;g;b;title;x;
 ...
 ```
 
-- Finally, the resized, recolored and exported files are saved into `export` directory. 
+- Finally, the recolored and exported files are saved into `export` directory. 
 
 ## Why is this being done?
 
@@ -48,4 +47,3 @@ Also, provinces on map are now larger and easier to map to and from. Counties ar
 
 - Localization directory is optional and if not found, counties will be named by their canonical c_county names.
 - For linux be sure to export LD_PATH to your imagemagick libraries (either installed by build_linux.sh script or preinstalled, so the program can find them.
-- Incoming maps under 4k resolution will not be scaled.

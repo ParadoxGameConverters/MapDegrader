@@ -2,10 +2,11 @@
 #include "MapDegrader.h"
 #include "OSCompatibilityLayer.h"
 
-int main(const int argc, const char* argv[])
+int main(const int argc, char** argv)
 {
 	try
 	{
+		Magick::InitializeMagick(*argv);
 		std::string gamePath;
 		auto wGamePath = commonItems::getSteamInstallPath("1158310");
 		if (!wGamePath)

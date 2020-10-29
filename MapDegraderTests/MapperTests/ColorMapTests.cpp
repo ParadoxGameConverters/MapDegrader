@@ -21,20 +21,39 @@ TEST(MapDegrader_ColorMapperTests, matrixCanBeBuilt)
 	Definitions definitions;
 	definitions.loadDefinitions(definitionStream);
 
+	Magick::Image testImage(Magick::Geometry(3, 2), "white");
+	testImage.modifyImage();
+	Magick::Pixels view(testImage);
+	auto* pixels = view.get(0, 1, 3, 1); // we'll color lower half to our provinces, one pixel per province.
+	*pixels++ = 1;
+	*pixels++ = 2;
+	*pixels++ = 3;
+	*pixels++ = 4;
+	*pixels++ = 5;
+	*pixels++ = 6;
+	*pixels++ = 7;
+	*pixels++ = 8;
+	*pixels++ = 9;
+	view.sync();
+
+	definitions.loadPixelData(testImage); // assign that lower half to our defined provinces
+
 	ColorMapper colorMapper;
-	colorMapper.craftReplacementColorMatrix(titles, definitions);
+	colorMapper.craftReplacementPixelList(titles, definitions);
 
-	const auto& matrix = colorMapper.getReplacementMatrix(); // matrix tells us which colors to replace with which others.
+	const auto& replacementPixels = colorMapper.getReplacementPixels(); // matrix tells us which pixels to replace with a chroma.
 
-	ASSERT_EQ(2, matrix.size());
+	// there should be 2 pixels inside a single map key, (2, 1) and (1, 1), responding to provIDs 17 and 13, respectively
+	ASSERT_EQ(1, replacementPixels.size());
 
-	const auto& [oldColor1, newColor1] = matrix[0];
-	const auto& [oldColor2, newColor2] = matrix[1];
+	const auto chroma = pixelPack(1, 2, 3);
+	const auto calculatedPixels = replacementPixels.find(chroma)->second;
 
-	ASSERT_EQ(commonItems::Color(std::array<int, 3>{4, 5, 6}), oldColor1);
-	ASSERT_EQ(commonItems::Color(std::array<int, 3>{1, 2, 3}), newColor1);
-	ASSERT_EQ(commonItems::Color(std::array<int, 3>{7, 8, 9}), oldColor2);
-	ASSERT_EQ(commonItems::Color(std::array<int, 3>{1, 2, 3}), newColor2);
+	ASSERT_EQ(2, calculatedPixels.size());
+	ASSERT_EQ(2, calculatedPixels[0].x);
+	ASSERT_EQ(1, calculatedPixels[0].y);
+	ASSERT_EQ(1, calculatedPixels[1].x);
+	ASSERT_EQ(1, calculatedPixels[1].y);
 }
 
 TEST(MapDegrader_ColorMapperTests, matrixWillThrowExceptionOnMissingDefinitions)
@@ -54,7 +73,7 @@ TEST(MapDegrader_ColorMapperTests, matrixWillThrowExceptionOnMissingDefinitions)
 	definitions.loadDefinitions(definitionStream);
 
 	ColorMapper colorMapper;
-	ASSERT_THROW(colorMapper.craftReplacementColorMatrix(titles, definitions), std::runtime_error);
+	ASSERT_THROW(colorMapper.craftReplacementPixelList(titles, definitions), std::runtime_error);
 }
 
 TEST(MapDegrader_ColorMapperTests, matrixWillNotThrowExceptionOnExtraDefinitions)
@@ -75,7 +94,7 @@ TEST(MapDegrader_ColorMapperTests, matrixWillNotThrowExceptionOnExtraDefinitions
 	definitions.loadDefinitions(definitionStream);
 
 	ColorMapper colorMapper;
-	ASSERT_NO_THROW(colorMapper.craftReplacementColorMatrix(titles, definitions));
+	ASSERT_NO_THROW(colorMapper.craftReplacementPixelList(titles, definitions));
 }
 
 TEST(MapDegrader_ColorMapperTests, newDefinitionsCanBeExported)
@@ -95,7 +114,7 @@ TEST(MapDegrader_ColorMapperTests, newDefinitionsCanBeExported)
 	definitions.loadDefinitions(definitionStream);
 
 	ColorMapper colorMapper;
-	colorMapper.craftReplacementColorMatrix(titles, definitions);
+	colorMapper.craftReplacementPixelList(titles, definitions);
 
 	std::stringstream locStream;
 	locStream << "l_english:\n";
@@ -128,7 +147,7 @@ TEST(MapDegrader_ColorMapperTests, newDefinitionsCanBeExportedWithoutLocalizatio
 	definitions.loadDefinitions(definitionStream);
 
 	ColorMapper colorMapper;
-	colorMapper.craftReplacementColorMatrix(titles, definitions);
+	colorMapper.craftReplacementPixelList(titles, definitions);
 
 	std::stringstream locStream;
 	LocalizationScraper localizations;
