@@ -6,7 +6,7 @@
 #include "OSCompatibilityLayer.h"
 #include <fstream>
 
-void ColorMapper::craftReplacementColorMatrix(const LandedTitles& landedTitles, const Definitions& definitions)
+void ColorMapper::craftReplacementPixelList(const LandedTitles& landedTitles, const Definitions& definitions)
 {
 	LOG(LogLevel::Info) << "Building Color Replacement Map";
 	auto counter = 0;

@@ -9,7 +9,7 @@ class LocalizationScraper;
 class ColorMapper
 {
   public:
-	void craftReplacementColorMatrix(const LandedTitles& landedTitles, const Definitions& definitions);
+	void craftReplacementPixelList(const LandedTitles& landedTitles, const Definitions& definitions);
 	void exportDefinitions(const LocalizationScraper& localization) const;
 	[[nodiscard]] std::string exportDefinitionsToString(const LocalizationScraper& localization) const;
 	[[nodiscard]] const auto& getReplacementPixels() const { return replacementPixels; }

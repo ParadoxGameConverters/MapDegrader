@@ -12,7 +12,7 @@ void MapDegrader::degradeMap(const std::string& gamePath)
 	localizationScraper.loadLocalizations(gamePath);
 	loadMap(gamePath);
 	definitions.loadPixelData(map);
-	colorMapper.craftReplacementColorMatrix(landedTitles, definitions);
+	colorMapper.craftReplacementPixelList(landedTitles, definitions);
 	alterMap(gamePath);
 	colorMapper.exportDefinitions(localizationScraper);
 }

@@ -39,7 +39,7 @@ TEST(MapDegrader_ColorMapperTests, matrixCanBeBuilt)
 	definitions.loadPixelData(testImage); // assign that lower half to our defined provinces
 
 	ColorMapper colorMapper;
-	colorMapper.craftReplacementColorMatrix(titles, definitions);
+	colorMapper.craftReplacementPixelList(titles, definitions);
 
 	const auto& replacementPixels = colorMapper.getReplacementPixels(); // matrix tells us which pixels to replace with a chroma.
 
@@ -73,7 +73,7 @@ TEST(MapDegrader_ColorMapperTests, matrixWillThrowExceptionOnMissingDefinitions)
 	definitions.loadDefinitions(definitionStream);
 
 	ColorMapper colorMapper;
-	ASSERT_THROW(colorMapper.craftReplacementColorMatrix(titles, definitions), std::runtime_error);
+	ASSERT_THROW(colorMapper.craftReplacementPixelList(titles, definitions), std::runtime_error);
 }
 
 TEST(MapDegrader_ColorMapperTests, matrixWillNotThrowExceptionOnExtraDefinitions)
@@ -94,7 +94,7 @@ TEST(MapDegrader_ColorMapperTests, matrixWillNotThrowExceptionOnExtraDefinitions
 	definitions.loadDefinitions(definitionStream);
 
 	ColorMapper colorMapper;
-	ASSERT_NO_THROW(colorMapper.craftReplacementColorMatrix(titles, definitions));
+	ASSERT_NO_THROW(colorMapper.craftReplacementPixelList(titles, definitions));
 }
 
 TEST(MapDegrader_ColorMapperTests, newDefinitionsCanBeExported)
@@ -114,7 +114,7 @@ TEST(MapDegrader_ColorMapperTests, newDefinitionsCanBeExported)
 	definitions.loadDefinitions(definitionStream);
 
 	ColorMapper colorMapper;
-	colorMapper.craftReplacementColorMatrix(titles, definitions);
+	colorMapper.craftReplacementPixelList(titles, definitions);
 
 	std::stringstream locStream;
 	locStream << "l_english:\n";
@@ -147,7 +147,7 @@ TEST(MapDegrader_ColorMapperTests, newDefinitionsCanBeExportedWithoutLocalizatio
 	definitions.loadDefinitions(definitionStream);
 
 	ColorMapper colorMapper;
-	colorMapper.craftReplacementColorMatrix(titles, definitions);
+	colorMapper.craftReplacementPixelList(titles, definitions);
 
 	std::stringstream locStream;
 	LocalizationScraper localizations;
