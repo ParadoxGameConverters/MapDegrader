@@ -34,9 +34,12 @@ TEST(MapDegrader_DefinitionsTests, definitionsCanBeLoaded)
 	const auto d1 = definitions.getDefinitions().find(1);
 	const auto d2 = definitions.getDefinitions().find(2);
 
+	const auto chroma1 = pixelPack(1, 2, 3);
+	const auto chroma2 = pixelPack(5, 6, 7);
+
 	ASSERT_EQ(2, definitions.getDefinitions().size());
-	ASSERT_EQ(commonItems::Color(std::array<int, 3>{1, 2, 3}), d1->second.color);
-	ASSERT_EQ(commonItems::Color(std::array<int, 3>{5, 6, 7}), d2->second.color);
+	ASSERT_EQ(chroma1, d1->second.chroma);
+	ASSERT_EQ(chroma2, d2->second.chroma);
 }
 
 TEST(MapDegrader_DefinitionsTests, commentsAndEmptyLinesAreIgnored)
@@ -62,7 +65,9 @@ TEST(MapDegrader_DefinitionsTests, matchOnIDReturnsColor)
 	input << "1;1;2;3;c_title1;x;\n";
 	definitions.loadDefinitions(input);
 
-	ASSERT_EQ(commonItems::Color(std::array<int, 3>{1, 2, 3}), definitions.getColorForProvinceID(1));
+	const auto chroma = pixelPack(1, 2, 3);
+
+	ASSERT_EQ(chroma, definitions.getChromaForProvinceID(1));
 }
 
 TEST(MapDegrader_DefinitionsTests, mismatchOnIDReturnsNothing)
@@ -73,5 +78,36 @@ TEST(MapDegrader_DefinitionsTests, mismatchOnIDReturnsNothing)
 	input << "1;1;2;3;c_title1;x;\n";
 	definitions.loadDefinitions(input);
 
-	ASSERT_FALSE(definitions.getColorForProvinceID(2));
+	ASSERT_FALSE(definitions.getChromaForProvinceID(2));
+}
+
+TEST(MapDegrader_DefinitionsTests, pixelsCanBeLoaded)
+{
+	std::stringstream input;
+	Definitions definitions;
+	input << "comment\n";
+	input << "1;255;0;0;c_title1;x;\n";
+	definitions.loadDefinitions(input);
+
+	Magick::Image testImage(Magick::Geometry(2, 2), "white");
+	testImage.modifyImage();
+	Magick::Pixels view(testImage);
+	auto *pixels = view.get(0, 1, 2, 1); // we'll color lower half to red - starting at 0x1, 2 columns, 1 row
+	for (auto column = 0; column < 2; ++column)
+	{
+		*pixels++ = 255;
+		*pixels++ = 0;
+		*pixels++ = 0;
+	}
+	view.sync();
+
+	definitions.loadPixelData(testImage); // assign that lower half to our defined province
+
+	const auto& provincePixels = definitions.getPixelsForProvinceID(1); // should be (0, 1) and (1, 1) as those are red
+
+	ASSERT_EQ(2, provincePixels.size());
+	ASSERT_EQ(0, provincePixels[0].x);
+	ASSERT_EQ(1, provincePixels[0].y);
+	ASSERT_EQ(1, provincePixels[1].x);
+	ASSERT_EQ(1, provincePixels[1].y);
 }

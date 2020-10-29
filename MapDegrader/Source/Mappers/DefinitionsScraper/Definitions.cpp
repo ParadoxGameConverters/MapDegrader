@@ -3,6 +3,7 @@
 #include "OSCompatibilityLayer.h"
 #include <fstream>
 #include "Magick++.h"
+#include <iomanip>
 
 void Definitions::loadDefinitions(std::istream& theStream)
 {
@@ -93,6 +94,8 @@ void Definitions::loadPixelData(Magick::Image& map)
 	const auto width = static_cast<int>(map.size().width());
 	const auto height = static_cast<int>(map.size().height());
 	auto counter = 0;
+	const auto pixelCount = static_cast<double>(width) * static_cast<double>(height);
+	double progress;
 	auto* pixels = view.get(0, 0, width, height);
 	Log(LogLevel::Info) << "Loading Pixel Data: " << width << "x" << height;
 	for (auto y = 0; y < height; ++y)
@@ -105,11 +108,17 @@ void Definitions::loadPixelData(Magick::Image& map)
 			const auto chroma = pixelPack(r, g, b);
 			
 			if (const auto& chromaItr = chromaCache.find(chroma); chromaItr != chromaCache.end())
-			{
 				definitions[chromaItr->second].pixels.emplace_back(Pixel(x, y));
-				counter++;
+			
+			if (counter % 1000000 == 0)
+			{
+				progress = counter * 100.0 / pixelCount;
+				Log(LogLevel::Progress) << std::fixed << std::setprecision(2) << progress << "% complete";
 			}
+			++counter;
 		}
+	progress = counter * 100.0 / pixelCount;
+	Log(LogLevel::Progress) << std::fixed << std::setprecision(2) << progress << "% complete";
 	Log(LogLevel::Info) << "Loaded " << counter << " pixels";
 }
 

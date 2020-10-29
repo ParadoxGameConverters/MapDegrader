@@ -1,4 +1,7 @@
 #include "MapDegrader.h"
+
+#include <iomanip>
+
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 
@@ -54,7 +57,7 @@ void MapDegrader::alterMap(const std::string& gamePath)
 		throw std::runtime_error("Cannot create export folder!");
 
 	// And now, chroma by chroma, replace targeted pixels only.
-	Log(LogLevel::Info) << "Swapping colors. This section takes about 10 minutes on a reasonable machine and cannot be rushed.";
+	Log(LogLevel::Info) << "Swapping colors.";
 	map.modifyImage();
 
 	Magick::Pixels view(map);
@@ -63,6 +66,7 @@ void MapDegrader::alterMap(const std::string& gamePath)
 	auto* rawPixels = view.get(0, 0, width, height);
 
 	auto counter = 0;
+	double progress;
 	for (const auto& [chroma, pixels]: colorMapper.getReplacementPixels())
 	{
 		const auto [r, g, b] = pixelUnpack(chroma);
@@ -73,11 +77,16 @@ void MapDegrader::alterMap(const std::string& gamePath)
 			rawPixels[offset + 1] = g;
 			rawPixels[offset + 2] = b;
 		}
-		++counter;
 		if (counter % 100 == 0)
-			Log(LogLevel::Progress) << std::to_string(counter * 100.0 / static_cast<double>(colorMapper.getReplacementPixels().size())) << "% complete";
+		{
+			progress = counter * 100.0 / static_cast<double>(colorMapper.getReplacementPixels().size());
+			Log(LogLevel::Progress) << std::fixed << std::setprecision(2) << progress << "% complete";
+		}
+		++counter;
 	}
 	view.sync();
+	progress = counter * 100.0 / static_cast<double>(colorMapper.getReplacementPixels().size());
+	Log(LogLevel::Progress) << std::fixed << std::setprecision(2) << progress << "% complete";
 
 	map.write("export/provinces.png");
 	Log(LogLevel::Info) << "Provinces exported.";

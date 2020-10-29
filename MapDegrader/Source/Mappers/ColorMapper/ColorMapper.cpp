@@ -42,9 +42,13 @@ void ColorMapper::craftReplacementColorMatrix(const LandedTitles& landedTitles, 
 				if (const auto& replacementItr = replacementPixels.find(smallestProvinceChroma); replacementItr!= replacementPixels.end())
 				{
 					replacementItr->second.insert(replacementItr->second.begin(), pixels.begin(), pixels.end());
+					Log(LogLevel::Debug) << "adding " << pixels.size() << "pixels";
 				}
 				else
+				{
 					replacementPixels[smallestProvinceChroma] = pixels;
+					Log(LogLevel::Debug) << "inserting " << pixels.size() << "pixels";
+				}
 			}
 
 		countyColors.insert(std::pair(smallestProvinceID, std::pair(countyName, smallestProvinceChroma)));
