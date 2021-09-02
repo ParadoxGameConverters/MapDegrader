@@ -28,6 +28,7 @@ void LandedTitles::loadTitles(const std::string& fileName)
 void LandedTitles::registerKeys()
 {
 	registerRegex(R"((e|k|d|c|b)_[A-Za-z0-9_\-\']+)", [this](const std::string& titleName, std::istream& theStream) {
+		Log(LogLevel::Debug) << "Into " << titleName;
 		LandedTitles newTitle;
 		newTitle.loadTitles(theStream, name, titleName);
 
@@ -40,6 +41,7 @@ void LandedTitles::registerKeys()
 	});
 	registerKeyword("province", [this](const std::string& unused, std::istream& theStream) {
 		provinceID = commonItems::singleInt(theStream).getInt();
+		Log(LogLevel::Debug) << "Province " << provinceID;
 	});
 	registerRegex(commonItems::catchallRegex, commonItems::ignoreItem);
 }

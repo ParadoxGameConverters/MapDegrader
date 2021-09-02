@@ -50,6 +50,7 @@ void ColorMapper::craftReplacementPixelList(const LandedTitles& landedTitles, co
 			}
 
 		countyColors.insert(std::pair(smallestProvinceID, std::pair(countyName, smallestProvinceChroma)));
+		Log(LogLevel::Debug) << " -- did -- " << smallestProvinceID << " - " << countyName << " - " << std::to_string(smallestProvinceChroma);
 	}
 	Log(LogLevel::Info) << "Recognized chromas: " << replacementPixels.size();
 }

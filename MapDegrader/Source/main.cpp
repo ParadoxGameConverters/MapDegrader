@@ -8,7 +8,9 @@ int main(const int argc, char** argv)
 	{
 		Magick::InitializeMagick(*argv);
 		std::string gamePath;
-		auto wGamePath = commonItems::getSteamInstallPath("1158310");
+		std::optional<std::wstring> wGamePath;
+		if (argc == 1)
+			wGamePath = commonItems::getSteamInstallPath("1158310");
 		if (!wGamePath)
 		{
 			Log(LogLevel::Info) << "CK3 not found, paths default to local directory.";
