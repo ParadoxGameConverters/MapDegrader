@@ -41,16 +41,14 @@ void ColorMapper::craftReplacementPixelList(const LandedTitles& landedTitles, co
 				const auto& pixels = definitions.getPixelsForProvinceID(baronyID);
 				if (const auto& replacementItr = replacementPixels.find(smallestProvinceChroma); replacementItr != replacementPixels.end())
 				{
-					replacementItr->second.insert(replacementItr->second.begin(), pixels.begin(), pixels.end());
+					replacementItr->second.insert(replacementItr->second.end(), pixels.begin(), pixels.end());
 				}
 				else
 				{
 					replacementPixels[smallestProvinceChroma] = pixels;
 				}
 			}
-
 		countyColors.insert(std::pair(smallestProvinceID, std::pair(countyName, smallestProvinceChroma)));
-		Log(LogLevel::Debug) << " -- did -- " << smallestProvinceID << " - " << countyName << " - " << std::to_string(smallestProvinceChroma);
 	}
 	Log(LogLevel::Info) << "Recognized chromas: " << replacementPixels.size();
 }

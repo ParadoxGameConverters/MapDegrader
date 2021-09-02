@@ -39,11 +39,12 @@ Also, provinces on map are now larger and easier to map to and from. Counties ar
 
 - For non-steam installations or where autodetection fails, program will expect for all the input files to be present in running directory:
 
-  * provinces.png
+  * provinces.png [or .bmp, bmp takes preference in case the png is off]
   * rivers.png
   * definition.csv
   * 00_landed_titles.txt
   * english/ directory copied from CK3's game/localization/ directory.
 
+- To force use of local over CK3 installation files (for working on mods), start the MapDegrader with any argument: "MapDegrader.exe blah" will work just fine.
 - Localization directory is optional and if not found, counties will be named by their canonical c_county names.
 - For linux be sure to export LD_PATH to your imagemagick libraries (either installed by build_linux.sh script or preinstalled, so the program can find them.
