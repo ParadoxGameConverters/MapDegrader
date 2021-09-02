@@ -38,11 +38,16 @@ void MapDegrader::scrapeDefinitions(const std::string& gamePath)
 void MapDegrader::loadMap(const std::string& gamePath)
 {
 	if (gamePath.empty())
-		map.read("provinces.png");
+		if (commonItems::DoesFileExist("provinces.bmp"))
+			map.read("provinces.bmp");
+		else
+			map.read("provinces.png");
+	else if (commonItems::DoesFileExist(gamePath + "map_data/provinces.bmp"))
+		map.read(gamePath + "map_data/provinces.bmp");
 	else
 		map.read(gamePath + "map_data/provinces.png");
 	if (!map.isValid())
-		throw std::runtime_error("Could not open provinces.png!");
+		throw std::runtime_error("Could not open provinces.png/bmp!");
 }
 
 void MapDegrader::alterMap(const std::string& gamePath)
