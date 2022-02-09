@@ -49,11 +49,11 @@ TEST(MapDegrader_ColorMapperTests, matrixCanBeBuilt)
 	const auto chroma = pixelPack(1, 2, 3);
 	const auto calculatedPixels = replacementPixels.find(chroma)->second;
 
-	ASSERT_EQ(2, calculatedPixels.size());
-	ASSERT_EQ(2, calculatedPixels[0].x);
-	ASSERT_EQ(1, calculatedPixels[0].y);
-	ASSERT_EQ(1, calculatedPixels[1].x);
-	ASSERT_EQ(1, calculatedPixels[1].y);
+	EXPECT_EQ(2, calculatedPixels.size());
+	EXPECT_EQ(1, calculatedPixels[0].x);
+	EXPECT_EQ(1, calculatedPixels[0].y);
+	EXPECT_EQ(2, calculatedPixels[1].x);
+	EXPECT_EQ(1, calculatedPixels[1].y);
 }
 
 TEST(MapDegrader_ColorMapperTests, matrixWillThrowExceptionOnMissingDefinitions)
