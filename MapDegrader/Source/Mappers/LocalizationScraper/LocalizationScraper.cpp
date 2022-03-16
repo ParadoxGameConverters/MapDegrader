@@ -26,7 +26,10 @@ void LocalizationScraper::loadLocalizations(const std::string& gamePath)
 	{
 		std::ifstream fileStream(locPath + "/" + file);
 		if (fileStream.is_open())
+		{
+			Log(LogLevel::Info) << "Localization scraping from: " << locPath + "/" + file;
 			scrapeStream(fileStream);
+		}
 		fileStream.close();
 	}
 
