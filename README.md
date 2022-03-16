@@ -42,8 +42,8 @@ Also, provinces on map are now larger and easier to map to and from. Counties ar
   * provinces.png [or .bmp, bmp takes preference in case the png is off]
   * rivers.png
   * definition.csv
-  * 00_landed_titles.txt
-  * english/ directory copied from CK3's game/localization/ directory.
+  * landed_titles/ directory copied from CK3's or mod's game/common/ directory.
+  * english/ directory copied from CK3's or mod's game/localization/ directory.
 
 - To force use of local over CK3 installation files (for working on mods), start the MapDegrader with any argument: "MapDegrader.exe blah" will work just fine.
 - Localization directory is optional and if not found, counties will be named by their canonical c_county names.
