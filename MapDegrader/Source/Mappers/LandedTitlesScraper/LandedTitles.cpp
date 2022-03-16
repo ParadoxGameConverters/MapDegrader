@@ -1,6 +1,7 @@
 #include "LandedTitles.h"
 #include "Log.h"
 #include "ParserHelpers.h"
+#include "CommonRegexes.h"
 
 void LandedTitles::loadTitles(std::istream& theStream, const std::string& theDJLiege, const std::string& theName)
 {

@@ -1,6 +1,7 @@
 #include "MapDegrader.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
+#include "CommonFunctions.h"
 #include <iomanip>
 
 void MapDegrader::degradeMap(const std::string& gamePath)
@@ -21,7 +22,9 @@ void MapDegrader::scrapeLandedTitles(const std::string& gamePath)
 	if (gamePath.empty())
 		landedTitles.loadTitles("00_landed_titles.txt");
 	else
-		landedTitles.loadTitles(gamePath + "common/landed_titles/00_landed_titles.txt");
+		for (const auto& filename: commonItems::GetAllFilesInFolder(gamePath + "common/landed_titles/"))
+			if (getExtension(filename) == "txt")
+				landedTitles.loadTitles(gamePath + "common/landed_titles/" + filename);
 	Log(LogLevel::Info) << landedTitles.getTitles().size() << " titles scraped.";
 }
 
