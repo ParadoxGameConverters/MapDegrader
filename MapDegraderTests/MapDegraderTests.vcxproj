@@ -71,8 +71,13 @@
   <ItemGroup>
     <ClCompile Include="..\commonItems\Color.cpp" />
     <ClCompile Include="..\commonItems\CommonFunctions.cpp" />
+    <ClCompile Include="..\commonItems\ConvenientParser.cpp" />
+    <ClCompile Include="..\commonItems\external\zip\src\zip.c" />
     <ClCompile Include="..\commonItems\iconvlite.cpp" />
     <ClCompile Include="..\commonItems\Log.cpp" />
+    <ClCompile Include="..\commonItems\ModLoader\ModFilesystem.cpp" />
+    <ClCompile Include="..\commonItems\ModLoader\ModLoader.cpp" />
+    <ClCompile Include="..\commonItems\ModLoader\ModParser.cpp" />
     <ClCompile Include="..\commonItems\OSCommonLayer.cpp" />
     <ClCompile Include="..\commonItems\Parser.cpp" />
     <ClCompile Include="..\commonItems\ParserHelpers.cpp" />

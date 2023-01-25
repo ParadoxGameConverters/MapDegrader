@@ -78,8 +78,13 @@
   <ItemGroup>
     <ClCompile Include="..\commonItems\Color.cpp" />
     <ClCompile Include="..\commonItems\CommonFunctions.cpp" />
+    <ClCompile Include="..\commonItems\ConvenientParser.cpp" />
+    <ClCompile Include="..\commonItems\external\zip\src\zip.c" />
     <ClCompile Include="..\commonItems\iconvlite.cpp" />
     <ClCompile Include="..\commonItems\Log.cpp" />
+    <ClCompile Include="..\commonItems\ModLoader\ModFilesystem.cpp" />
+    <ClCompile Include="..\commonItems\ModLoader\ModLoader.cpp" />
+    <ClCompile Include="..\commonItems\ModLoader\ModParser.cpp" />
     <ClCompile Include="..\commonItems\OSCommonLayer.cpp" />
     <ClCompile Include="..\commonItems\Parser.cpp" />
     <ClCompile Include="..\commonItems\ParserHelpers.cpp" />
@@ -95,8 +100,15 @@
   <ItemGroup>
     <ClInclude Include="..\commonItems\Color.h" />
     <ClInclude Include="..\commonItems\CommonFunctions.h" />
+    <ClInclude Include="..\commonItems\ConvenientParser.h" />
+    <ClInclude Include="..\commonItems\external\zip\src\miniz.h" />
+    <ClInclude Include="..\commonItems\external\zip\src\zip.h" />
     <ClInclude Include="..\commonItems\iconvlite.h" />
     <ClInclude Include="..\commonItems\Log.h" />
+    <ClInclude Include="..\commonItems\ModLoader\Mod.h" />
+    <ClInclude Include="..\commonItems\ModLoader\ModFilesystem.h" />
+    <ClInclude Include="..\commonItems\ModLoader\ModLoader.h" />
+    <ClInclude Include="..\commonItems\ModLoader\ModParser.h" />
     <ClInclude Include="..\commonItems\OSCompatibilityLayer.h" />
     <ClInclude Include="..\commonItems\Parser.h" />
     <ClInclude Include="..\commonItems\ParserHelpers.h" />

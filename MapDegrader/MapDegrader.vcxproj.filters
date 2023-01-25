@@ -42,6 +42,21 @@
     <ClCompile Include="Source\Mappers\LocalizationScraper\LocalizationScraper.cpp">
       <Filter>Mappers\LocalizationScraper</Filter>
     </ClCompile>
+    <ClCompile Include="..\commonItems\external\zip\src\zip.c">
+      <Filter>commonItems\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\ModLoader\ModFilesystem.cpp">
+      <Filter>commonItems\ModLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\ModLoader\ModLoader.cpp">
+      <Filter>commonItems\ModLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\ModLoader\ModParser.cpp">
+      <Filter>commonItems\ModLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\ConvenientParser.cpp">
+      <Filter>commonItems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="commonItems">
@@ -64,6 +79,12 @@
     </Filter>
     <Filter Include="Mappers\LocalizationScraper">
       <UniqueIdentifier>{6b796f78-541b-47fa-9430-01ed70afca40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="commonItems\zip">
+      <UniqueIdentifier>{7181ee8d-8a79-4e2c-99cb-ebe3efc04df7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="commonItems\ModLoader">
+      <UniqueIdentifier>{f155bbd4-39f3-4f7e-8005-4deafe65bbda}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +124,27 @@
     </ClInclude>
     <ClInclude Include="Source\Mappers\LocalizationScraper\LocalizationScraper.h">
       <Filter>Mappers\LocalizationScraper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\commonItems\external\zip\src\miniz.h">
+      <Filter>commonItems\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\commonItems\external\zip\src\zip.h">
+      <Filter>commonItems\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\commonItems\ModLoader\Mod.h">
+      <Filter>commonItems\ModLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\commonItems\ModLoader\ModFilesystem.h">
+      <Filter>commonItems\ModLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\commonItems\ModLoader\ModLoader.h">
+      <Filter>commonItems\ModLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\commonItems\ModLoader\ModParser.h">
+      <Filter>commonItems\ModLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\commonItems\ConvenientParser.h">
+      <Filter>commonItems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
