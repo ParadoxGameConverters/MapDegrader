@@ -101,6 +101,7 @@ void MapDegrader::alterMap(const std::string& gamePath)
 	auto* rawPixels = view.get(0, 0, width, height);
 
 	auto counter = 0;
+	auto pixelCounter = 0;
 	double progress;
 	for (const auto& [chroma, pixels]: colorMapper.getReplacementPixels())
 	{
@@ -111,6 +112,7 @@ void MapDegrader::alterMap(const std::string& gamePath)
 			rawPixels[offset] = r;
 			rawPixels[offset + 1] = g;
 			rawPixels[offset + 2] = b;
+			++pixelCounter;
 		}
 		if (counter % 100 == 0)
 		{
@@ -124,7 +126,8 @@ void MapDegrader::alterMap(const std::string& gamePath)
 	Log(LogLevel::Progress) << std::fixed << std::setprecision(2) << progress << "% complete";
 
 	map.write("export/provinces.png");
-	Log(LogLevel::Info) << "Provinces exported.";
+	Log(LogLevel::Info) << "Provinces exported, " << pixelCounter << " pixels out of " << map.size().width() * map.size().height()
+							  << " starting pixels changed.";
 
 	// Part 2. We'll read and re-write the rivers to fix potential sub-format issues.
 

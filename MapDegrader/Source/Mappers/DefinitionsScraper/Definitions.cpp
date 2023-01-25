@@ -98,6 +98,9 @@ void Definitions::loadPixelData(Magick::Image& map)
 	double progress;
 	auto* pixels = view.get(0, 0, width, height);
 	Log(LogLevel::Info) << "Loading Pixel Data: " << width << "x" << height;
+	auto pixelCounter = 0;
+	auto pixelFail = 0;
+	std::set<unsigned int> failChromas;
 	for (auto y = 0; y < height; ++y)
 		for (auto x = 0; x < width; ++x)
 		{
@@ -108,7 +111,15 @@ void Definitions::loadPixelData(Magick::Image& map)
 			const auto chroma = pixelPack(r, g, b);
 
 			if (const auto& chromaItr = chromaCache.find(chroma); chromaItr != chromaCache.end())
+			{
 				definitions[chromaItr->second].pixels.emplace_back(Pixel(x, y));
+				++pixelCounter;
+			}
+			else
+			{
+				++pixelFail;
+				failChromas.emplace(chroma);
+			}
 
 			if (counter % 1000000 == 0)
 			{
@@ -119,7 +130,8 @@ void Definitions::loadPixelData(Magick::Image& map)
 		}
 	progress = counter * 100.0 / pixelCount;
 	Log(LogLevel::Progress) << std::fixed << std::setprecision(2) << progress << "% complete";
-	Log(LogLevel::Info) << "Loaded " << counter << " pixels";
+	Log(LogLevel::Info) << "Loaded " << counter << " pixels, " << pixelCounter << " pixels recognized, " << pixelFail << " were not assigned in "
+							  << failChromas.size() << " failed chromas.";
 }
 
 unsigned int pixelPack(const unsigned char r, const unsigned char g, const unsigned char b)
@@ -135,7 +147,7 @@ std::tuple<unsigned char, unsigned char, unsigned char> pixelUnpack(const unsign
 	return std::tuple(r, g, b);
 }
 
-int coordsToOffset(const int x, const int y, const int width)
+unsigned int coordsToOffset(const int x, const int y, const int width)
 {
 	return (y * width + x) * 3;
 }

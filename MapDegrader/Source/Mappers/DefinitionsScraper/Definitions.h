@@ -36,12 +36,12 @@ class Definitions
   private:
 	void parseStream(std::istream& theStream);
 
-	std::map<int, int> chromaCache; // chroma, provinceID
+	std::map<unsigned int, int> chromaCache; // chroma, provinceID
 	std::map<int, ProvinceDefinition> definitions;
 };
 
 unsigned int pixelPack(unsigned char r, unsigned char g, unsigned char b);
 std::tuple<unsigned char, unsigned char, unsigned char> pixelUnpack(unsigned int chroma);
-int coordsToOffset(int x, int y, int width);
+unsigned int coordsToOffset(int x, int y, int width);
 
 #endif // DEFINITIONS_H

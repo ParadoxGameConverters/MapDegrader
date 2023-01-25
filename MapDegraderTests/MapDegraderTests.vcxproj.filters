@@ -25,6 +25,12 @@
     <Filter Include="commonItems">
       <UniqueIdentifier>{be3123c2-ed53-4821-a764-e5d4dcd7bae7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="commonItems\ModLoader">
+      <UniqueIdentifier>{7f615a42-bfd2-43ed-9d92-0034064af1ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="commonItems\zip">
+      <UniqueIdentifier>{81078e4c-2648-4b75-a325-1267972af393}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\googletest\googletest\src\gtest_main.cc" />
@@ -82,6 +88,21 @@
     </ClCompile>
     <ClCompile Include="MapperTests\ColorMapTests.cpp">
       <Filter>MapperTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\ModLoader\ModFilesystem.cpp">
+      <Filter>commonItems\ModLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\ModLoader\ModLoader.cpp">
+      <Filter>commonItems\ModLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\ModLoader\ModParser.cpp">
+      <Filter>commonItems\ModLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\external\zip\src\zip.c">
+      <Filter>commonItems\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\commonItems\ConvenientParser.cpp">
+      <Filter>commonItems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
