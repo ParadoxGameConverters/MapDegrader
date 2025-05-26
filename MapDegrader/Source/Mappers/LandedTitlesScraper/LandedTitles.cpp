@@ -1,7 +1,7 @@
 #include "LandedTitles.h"
-#include "CommonRegexes.h"
-#include "Log.h"
-#include "ParserHelpers.h"
+#include <CommonRegexes.h>
+#include <Log.h>
+#include <ParserHelpers.h>
 
 void LandedTitles::loadTitles(std::istream& theStream, const std::string& theDJLiege, const std::string& theName)
 {
@@ -19,7 +19,7 @@ void LandedTitles::loadTitles(std::istream& theStream)
 	clearRegisteredKeywords();
 }
 
-void LandedTitles::loadTitles(const std::string& fileName)
+void LandedTitles::loadTitles(const std::filesystem::path& fileName)
 {
 	registerKeys();
 	parseFile(fileName);
