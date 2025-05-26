@@ -1,5 +1,5 @@
 #include "../../MapDegrader/MapDegrader/Source/Mappers/LandedTitlesScraper/LandedTitles.h"
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include <sstream>
 
 TEST(MapDegrader_LandedTitlesTests, titlePrimitivesDefaultToBlank)

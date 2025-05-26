@@ -1,5 +1,5 @@
 #include "../../MapDegrader/MapDegrader/Source/Mappers/LocalizationScraper/LocalizationScraper.h"
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include <sstream>
 
 TEST(MapDegrader_LocalizationsTests, matchReturnsCorrectLoc)
