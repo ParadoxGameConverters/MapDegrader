@@ -2,8 +2,8 @@
 #include "../DefinitionsScraper/Definitions.h"
 #include "../LandedTitlesScraper/LandedTitles.h"
 #include "../LocalizationScraper/LocalizationScraper.h"
-#include "Log.h"
-#include "OSCompatibilityLayer.h"
+#include <Log.h>
+#include <OSCompatibilityLayer.h>
 #include <fstream>
 
 void ColorMapper::craftReplacementPixelList(const LandedTitles& landedTitles, const Definitions& definitions)

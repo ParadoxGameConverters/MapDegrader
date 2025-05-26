@@ -1,6 +1,6 @@
 #ifndef COLOR_MAPPER_H
 #define COLOR_MAPPER_H
-#include "Color.h"
+#include <Color.h>
 
 struct Pixel;
 class LandedTitles;
