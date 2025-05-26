@@ -1,7 +1,7 @@
 #include "Definitions.h"
-#include "Log.h"
-#include "Magick++.h"
-#include "OSCompatibilityLayer.h"
+#include <Log.h>
+#include <Magick++.h>
+#include <OSCompatibilityLayer.h>
 #include <fstream>
 #include <iomanip>
 
@@ -10,7 +10,7 @@ void Definitions::loadDefinitions(std::istream& theStream)
 	parseStream(theStream);
 }
 
-void Definitions::loadDefinitions(const std::string& fileName)
+void Definitions::loadDefinitions(const std::filesystem::path& fileName)
 {
 	if (!commonItems::DoesFileExist(fileName))
 		throw std::runtime_error("Definitions file cannot be found!");

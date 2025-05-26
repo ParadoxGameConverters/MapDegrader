@@ -1,12 +1,13 @@
 #ifndef LANDED_TITLES_H
 #define LANDED_TITLES_H
-#include "Parser.h"
+#include <Parser.h>
+#include <filesystem>
 
 class LandedTitles: commonItems::parser
 {
   public:
 	void loadTitles(std::istream& theStream, const std::string& theDJLiege, const std::string& theName);
-	void loadTitles(const std::string& fileName);
+	void loadTitles(const std::filesystem::path& fileName);
 	void loadTitles(std::istream& theStream);
 
 	[[nodiscard]] auto getProvinceID() const { return provinceID; }

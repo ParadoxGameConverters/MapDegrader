@@ -2,7 +2,7 @@
 #include "../../MapDegrader/MapDegrader/Source/Mappers/DefinitionsScraper/Definitions.h"
 #include "../../MapDegrader/MapDegrader/Source/Mappers/LandedTitlesScraper/LandedTitles.h"
 #include "../../MapDegrader/MapDegrader/Source/Mappers/LocalizationScraper/LocalizationScraper.h"
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include <sstream>
 
 TEST(MapDegrader_ColorMapperTests, matrixCanBeBuilt)

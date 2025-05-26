@@ -1,33 +1,32 @@
 #include "LocalizationScraper.h"
-#include "Log.h"
-#include "OSCompatibilityLayer.h"
+#include <Log.h>
+#include <OSCompatibilityLayer.h>
 #include <fstream>
 
-void LocalizationScraper::loadLocalizations(const std::string& gamePath)
+void LocalizationScraper::loadLocalizations(const std::filesystem::path& gamePath)
 {
-	std::string locPath;
+	std::filesystem::path locPath;
 	if (gamePath.empty())
 		locPath = "english";
 	else
-		locPath = gamePath + "/localization/english";
+		locPath = gamePath / "localization/english";
 
 	LOG(LogLevel::Info) << "Scraping localizations from directory: " << locPath;
 
 	if (!commonItems::DoesFolderExist(locPath))
 	{
-		Log(LogLevel::Error) << "Localization Mapper cannot find proper folder. You need either \"english\" in running dir or " << gamePath
+		Log(LogLevel::Error) << "Localization Mapper cannot find proper folder. You need either \"english\" in running dir or " << gamePath.string()
 									<< "localization/english.";
 		Log(LogLevel::Error) << "Localizations for titles are disabled.";
 		return;
 	}
 
-	auto fileNames = commonItems::GetAllFilesInFolderRecursive(locPath);
-	for (const auto& file: fileNames)
+	for (const auto& file: commonItems::GetAllFilesInFolderRecursive(locPath))
 	{
-		std::ifstream fileStream(locPath + "/" + file);
+		std::ifstream fileStream(locPath / file);
 		if (fileStream.is_open())
 		{
-			Log(LogLevel::Info) << "Localization scraping from: " << locPath + "/" + file;
+			Log(LogLevel::Info) << "Localization scraping from: " << (locPath / file).string();
 			scrapeStream(fileStream);
 		}
 		fileStream.close();
