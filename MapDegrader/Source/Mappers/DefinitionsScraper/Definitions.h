@@ -1,7 +1,7 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
-#include "Color.h"
-#include "Magick++.h"
+#include <Color.h>
+#include <Magick++.h>
 #include <map>
 
 struct Pixel
@@ -25,7 +25,7 @@ struct ProvinceDefinition
 class Definitions
 {
   public:
-	void loadDefinitions(const std::string& fileName);
+	void loadDefinitions(const std::filesystem::path& fileName);
 	void loadDefinitions(std::istream& theStream);
 	void loadPixelData(Magick::Image& map);
 
