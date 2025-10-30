@@ -28,7 +28,7 @@ void LandedTitles::loadTitles(const std::filesystem::path& fileName)
 
 void LandedTitles::registerKeys()
 {
-	registerRegex(R"((e|k|d|c|b)_[A-Za-z0-9_\-\']+)",
+	registerRegex(R"((h|e|k|d|c|b)_[A-Za-z0-9_\-\']+)",
 		 [this](const std::string& titleName, std::istream& theStream)
 		 {
 			 LandedTitles newTitle;
